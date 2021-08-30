@@ -6,7 +6,6 @@
     const btns = document.querySelectorAll('.btn');
     const btnEqual = document.querySelector('.btn-equal');
     const btnClear = document.querySelector('.btn-clear');
-    let isActiveOrNot = false;
 
     btns.forEach(btn => {
         btn.addEventListener('click', event => {
@@ -17,20 +16,16 @@
 
     // showing value on screen 
     function showValue(number) {
-        const lastValue = screen.value[screen.value.length - 1];
-        if (!(lastValue === '+' && !isActiveOrNot)) {
-            screen.value = screen.value + number;
-            isActiveOrNot = true;
-        }
-        if (isActiveOrNot) {
-            screen.value = screen.value;
-            isActiveOrNot = false;
-        }
+        screen.value += number;
     }
 
     // evaluate the value
     btnEqual.addEventListener('click', () => {
-        screen.value = eval(screen.value);
+        if (screen.value === '') {
+            screen.value = 'Please Enter the value'
+        } else {
+            screen.value = eval(screen.value);
+        }
     })
 
     // clearing screen 
